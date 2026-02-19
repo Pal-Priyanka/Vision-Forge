@@ -91,7 +91,7 @@ graph TD
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/thriniiiiiiiiiiii/Vision-Forge.git
+   git clone https://github.com/Pal-Priyanka/Vision-Forge.git
    cd Vision-Forge
    ```
 
