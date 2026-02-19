@@ -1,0 +1,64 @@
+name: Vision-Forge CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-and-test-api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          cd apps/api
+          pip install -r requirements.txt
+      - name: Lint with flake8
+        run: |
+          pip install flake8
+          flake8 apps/api --count --select=E9,F63,F7,F82 --show-source --statistics
+      - name: Test with pytest
+        run: |
+          pip install pytest
+          pytest apps/api/tests
+
+  lint-and-test-portal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: apps/portal/package-lock.json
+      - name: Install dependencies
+        run: |
+          cd apps/portal
+          npm install
+      - name: Lint
+        run: |
+          cd apps/portal
+          npm run lint
+      - name: Build
+        run: |
+          cd apps/portal
+          npm run build
+
+  build-and-push:
+    needs: [lint-and-test-api, lint-and-test-portal]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build API Image
+        run: docker build -t vision-forge-api:latest -f infrastructure/docker/Dockerfile.api .
+      - name: Build Portal Image
+        run: docker build -t vision-forge-portal:latest -f infrastructure/docker/Dockerfile.portal .
+      # Add ECR/DockerHub push steps here

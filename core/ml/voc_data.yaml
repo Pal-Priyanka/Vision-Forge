@@ -1,0 +1,6 @@
+
+path: C:\Users\palan\OneDrive\Desktop\DL_Transformer_project\VOC2012_train_val\VOC2012_train_val
+train: train.txt
+val: val.txt
+nc: 20
+names: ['aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor']

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: visionforge-frontend
+  labels:
+    app: visionforge
+    component: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: visionforge
+      component: frontend
+  template:
+    metadata:
+      labels:
+        app: visionforge
+        component: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: visionforge-frontend:latest
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: visionforge
+    component: frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer

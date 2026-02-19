@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: visionforge-backend
+  labels:
+    app: visionforge
+    component: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: visionforge
+      component: backend
+  template:
+    metadata:
+      labels:
+        app: visionforge
+        component: backend
+    spec:
+      containers:
+      - name: backend
+        image: visionforge-backend:latest
+        ports:
+        - containerPort: 8000
+        resources:
+          limits:
+            cpu: "2"
+            memory: "4Gi"
+          requests:
+            cpu: "1"
+            memory: "2Gi"
+        env:
+        - name: ENV
+          value: "production"
+        - name: OLLAMA_HOST
+          value: "http://ollama-service:11434"
+        volumeMounts:
+        - name: model-storage
+          mountPath: /app/checkpoints
+      volumes:
+      - name: model-storage
+        persistentVolumeClaim:
+          claimName: visionforge-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: visionforge
+    component: backend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
+  type: ClusterIP

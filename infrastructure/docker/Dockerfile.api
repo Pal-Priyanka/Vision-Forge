@@ -1,0 +1,37 @@
+# Production-Grade Multi-Stage Dockerfile for Vision-Forge API
+# Stage 1: Build & Dependencies
+FROM python:3.9-slim as builder
+
+WORKDIR /build
+
+# Install system dependencies for ML and CV
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install python dependencies
+COPY apps/api/requirements.txt .
+RUN pip install --user --no-cache-dir -r requirements.txt
+
+# Stage 2: Production Image
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Copy only necessary files from builder
+COPY --from=builder /root/.local /root/.local
+COPY --from=builder /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu
+
+# Ensure path includes user-installed packages
+ENV PATH=/root/.local/bin:$PATH
+
+# Copy application source
+COPY apps/api/ .
+# Copy core ML assets
+COPY core/ /app/core/
+
+# Expose port and run
+EXPOSE 8000
+CMD ["python", "main.py"]

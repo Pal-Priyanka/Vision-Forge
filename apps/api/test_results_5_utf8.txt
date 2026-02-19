@@ -1,0 +1,66 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.14.2, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\palan\OneDrive\Desktop\DL_Transformer_project\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\palan\OneDrive\Desktop\DL_Transformer_project\web_app\backend
+plugins: anyio-4.12.1, asyncio-1.3.0, httpx-0.36.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 4 items
+
+tests/test_auth.py::test_login_success FAILED                            [ 25%]
+tests/test_auth.py::test_login_failure FAILED                            [ 50%]
+tests/test_auth.py::test_protected_route_without_token FAILED            [ 75%]
+tests/test_auth.py::test_protected_route_with_token FAILED               [100%]
+
+================================== FAILURES ===================================
+_____________________________ test_login_success ______________________________
+
+    def test_login_success():
+        response = client.post(
+            "/api/auth/login",
+            data={"username": "admin", "password": "admin123"}
+        )
+>       assert response.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+tests\test_auth.py:12: AssertionError
+_____________________________ test_login_failure ______________________________
+
+    def test_login_failure():
+        response = client.post(
+            "/api/auth/login",
+            data={"username": "admin", "password": "wrongpassword"}
+        )
+>       assert response.status_code == 401
+E       assert 404 == 401
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+tests\test_auth.py:20: AssertionError
+_____________________ test_protected_route_without_token ______________________
+
+    def test_protected_route_without_token():
+        response = client.get("/api/auth/me")
+>       assert response.status_code == 401
+E       assert 404 == 401
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+tests\test_auth.py:24: AssertionError
+_______________________ test_protected_route_with_token _______________________
+
+    def test_protected_route_with_token():
+        # Login first
+        login_res = client.post(
+            "/api/auth/login",
+            data={"username": "admin", "password": "admin123"}
+        )
+>       token = login_res.json()["access_token"]
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'access_token'
+
+tests\test_auth.py:32: KeyError
+=========================== short test summary info ===========================
+FAILED tests/test_auth.py::test_login_success - assert 404 == 200
+FAILED tests/test_auth.py::test_login_failure - assert 404 == 401
+FAILED tests/test_auth.py::test_protected_route_without_token - assert 404 ==...
+FAILED tests/test_auth.py::test_protected_route_with_token - KeyError: 'acces...
+============================= 4 failed in 10.62s ==============================
