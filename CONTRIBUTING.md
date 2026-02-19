@@ -2,7 +2,7 @@
 
 First off, thank you for considering contributing to Vision-Forge! It's people like you that make it an elite tool for the CV community.
 
-## 🛠 Development Workflow
+## Development Workflow
 
 1.  **Fork the repo** and create your branch from `develop`.
 2.  **Set up the environment**:
@@ -19,7 +19,7 @@ First off, thank you for considering contributing to Vision-Forge! It's people l
     npm run test -w apps/portal
     ```
 
-## 📝 Commit Message Guidelines
+## Commit Message Guidelines
 
 We use [Conventional Commits](https://www.conventionalcommits.org/).
 
@@ -30,12 +30,12 @@ We use [Conventional Commits](https://www.conventionalcommits.org/).
 
 Example: `feat(api): add multi-gpu orchestration support`
 
-## 🚀 Pull Request Process
+## Pull Request Process
 
 1.  Update the `CHANGELOG.md` with your changes.
 2.  The PR must pass all CI/CD checks (Lint, Build, Test).
 3.  Get at least one approval from the core maintainers.
 
-## ⚖️ Code of Conduct
+## Code of Conduct
 
 Help us maintain a high-trust, elite engineering culture. Please read our [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
