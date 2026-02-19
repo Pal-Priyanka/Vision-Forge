@@ -23,7 +23,7 @@ class DETRDetector:
     def load_model(self):
         """Asynchronous-friendly model loading."""
         try:
-            print(f"📦 Loading DETR model: {self.model_path}")
+            print(f"Loading DETR model: {self.model_path}")
             
             # Stage 1: Encoder/Processor
             self.stage_details["encoder"] = "Loading..."
@@ -50,10 +50,10 @@ class DETRDetector:
             self.stage_details["warmup"] = "Ready"
             
             self.status = "Ready"
-            print(f"✅ DETR model fully loaded on {self.device}.")
+            print(f"DETR model fully loaded on {self.device}.")
         except Exception as e:
             self.status = "Failed"
-            print(f"❌ Failed to load DETR: {e}")
+            print(f"Failed to load DETR: {e}")
             raise e
 
     def _warmup(self):

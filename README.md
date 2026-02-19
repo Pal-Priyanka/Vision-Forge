@@ -1,4 +1,4 @@
-# 🦅 Vision-Forge: Production-Grade Neural Architecture Benchmarking
+# Vision-Forge: Production-Grade Neural Architecture Benchmarking
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
@@ -9,7 +9,7 @@
 
 ---
 
-## 🎯 Vision & Problem Statement
+## Vision and Problem Statement
 
 In the rapidly evolving landscape of Visual AI, the trade-off between **Local Inductive Bias (CNNs)** and **Global Contextual Awareness (Transformers)** remains a critical design decision.
 
@@ -20,7 +20,7 @@ Vision-Forge provides engineers and researchers with a "Neural Arena" to:
 
 ---
 
-## 🏗 System Architecture
+## System Architecture
 
 Vision-Forge is built as a high-performance Monorepo, separating core logic from delivery layers.
 
@@ -45,7 +45,7 @@ graph TD
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 ### Frontend (Portal)
 - **Framework**: React 18 + Vite (TypeScript)
@@ -70,7 +70,7 @@ graph TD
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 - **Dual-Model Arena**: Run simultaneous inference and compare results visually.
 - **Live Sensitivity Profiling**: Adjust confidence gates in real-time without re-inference.
@@ -80,7 +80,7 @@ graph TD
 
 ---
 
-## 🚦 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Python 3.9+
@@ -90,8 +90,14 @@ graph TD
 ### Installation
 
 1. **Clone the repository**
+   Select the appropriate repository for your deployment:
    ```bash
+   # Primary Repository
+   git clone https://github.com/thriniiiiiiiiiiii/Vision-Forge.git
+   
+   # Alternative Repository
    git clone https://github.com/Pal-Priyanka/Vision-Forge.git
+   
    cd Vision-Forge
    ```
 
@@ -111,7 +117,7 @@ graph TD
 
 ---
 
-## 📈 Roadmap
+## Roadmap
 
 - [ ] **Multi-GPU Orchestration**: Distributed inference across multiple nodes.
 - [ ] **Custom Model Upload**: Support for customer-trained ONNX/TensorRT models.
@@ -120,16 +126,16 @@ graph TD
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions from the elite engineering community. Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by the Vision-Forge Engineering Team</sub>
+  <sub>Developed by the Vision-Forge Engineering Team</sub>
 </div>

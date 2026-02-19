@@ -227,7 +227,7 @@ class InferenceStore:
 store = InferenceStore()
 
 # ── MODEL LOADING ──
-print("📦 Initializing Detectors...")
+print("Initializing Detectors...")
 yolo_detector = None
 detr_detector = DETRDetector(DETR_PATH) # Initialize with empty status
 
@@ -238,14 +238,14 @@ async def load_models_async():
     try:
         yolo_detector = YOLOv5Detector(YOLO_PATH)
     except Exception as e:
-        print(f"⚠️ Failed to load YOLOv5: {e}")
+        print(f"Failed to load YOLOv5: {e}")
 
     # DETR is the heavy lifter — load it in background
     try:
         # Run synchronous load in a thread to keep event loop free
         await asyncio.to_thread(detr_detector.load_model)
     except Exception as e:
-        print(f"⚠️ Async DETR Load failed: {e}")
+        print(f"Async DETR Load failed: {e}")
 
 @app.on_event("startup")
 async def startup_event():
@@ -264,7 +264,7 @@ def build_voc_hash_map():
     """Compute hashes for all VOC images to match against uploads."""
     if not os.path.exists(VOC_IMAGES):
         return
-    print("🧠 Building VOC Image Hash Map...")
+    print("Building VOC Image Hash Map...")
     for fname in os.listdir(VOC_IMAGES):
         if fname.endswith(".jpg"):
             img_id = os.path.splitext(fname)[0]
@@ -282,7 +282,7 @@ def find_ground_truth_for_image(image_bytes: bytes) -> list:
     h = hashlib.md5(image_bytes).hexdigest()
     image_id = VOC_HASH_MAP.get(h)
     if image_id:
-        logger.info(f"🎯 Match found in VOC: {image_id}")
+        logger.info(f"Match found in VOC: {image_id}")
         return load_voc_ground_truth(image_id)
     return []
 

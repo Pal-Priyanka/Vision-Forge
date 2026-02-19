@@ -2,13 +2,13 @@
 
 Vision-Forge is engineered for high-availability, low-latency AI inference and comparative analysis. This document outlines the core architectural principles and data flow.
 
-## 🏛 Design Philosophy
+## Design Philosophy
 
 1.  **Decoupling Architecture**: The UI is a thin "Portal" layer, while the "Neural Engine" handles heavy lifting.
 2.  **Concurrency by Default**: Model inference is treated as an asynchronous task to prevent UI blocking.
 3.  **Observability**: Every inference event is logged with detailed telemetry (latency, confidence, class distribution).
 
-## 🧩 Component Breakdown
+## Component Breakdown
 
 ### 1. Delivery Layer (Portal)
 - **Type**: Single Page Application (SPA).
@@ -25,7 +25,7 @@ Vision-Forge is engineered for high-availability, low-latency AI inference and c
 - **Optimization**: CUDA-enabled (if available) with automated fallback to CPU.
 - **Data Flow**: Base64 image -> Tensor -> Inference -> JSON Result -> UI.
 
-## 🔄 Data Flow (Inference Request)
+## Data Flow: Inference Request
 
 1.  **Ingress**: User uploads image via Portal.
 2.  **Transformation**: Portal compresses and sends Base64 payload to API.
@@ -34,7 +34,7 @@ Vision-Forge is engineered for high-availability, low-latency AI inference and c
 5.  **Aggregation**: Results are merged with telemetry data.
 6.  **Egress**: JSON payload returned to Portal for rendering.
 
-## 📊 Telemetry System
+## Telemetry System
 
 The analytics engine computes metrics in two phases:
 1.  **Live (Volatile)**: FPS and Latency computed on the fly.

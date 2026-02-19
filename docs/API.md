@@ -2,7 +2,7 @@
 
 The Vision-Forge API is a high-performance RESTful interface designed for real-time model interaction and system diagnostics.
 
-## 🔌 Core Endpoints
+## Core Endpoints
 
 ### Inference Arena
 
@@ -58,13 +58,13 @@ Programs a batch evaluation run against a subset of the benchmark dataset.
 
 ---
 
-## 🔐 Security & Middleware
+## Security and Middleware
 
 - **CORS**: Configured for high-trust origins.
 - **Rate Limiting**: 100 requests/minute per IP to prevent DoS on GPU resources.
 - **Validation**: Strict Pydantic models for all ingress/egress.
 
-## 📡 WebSockets
+## WebSockets
 
 `WS /ws/inference/live`
 Unstable feature (In Development). Supports a persistent stream of frames for live video analysis without HTTP overhead.
