@@ -58,5 +58,23 @@ git push origin main
 Ensure `thriniiiiiiiiiiii` is your correct GitHub username. If your username is different (e.g., `Pal-Priyanka`), update the remote URL:
 ```bash
 git remote set-url origin https://github.com/Pal-Priyanka/Vision-Forge.git
-git push -u origin main -f
+## Collaboration and Access Management
+
+If you need to grant access to another developer or manage multiple repositories:
+
+### 1. Inviting Collaborators
+To invite `thriniiiiiiiiiiii` or other contributors:
+1. Navigate to the **Settings** tab of your repository on GitHub.
+2. Select **Collaborators** from the left-hand sidebar.
+3. Click **Add People** and search for the username (e.g., `thriniiiiiiiiiiii`).
+4. Select the appropriate permission level (Recommend `Write`).
+
+### 2. Managing Multiple Remotes
+If you wish to maintain sync across multiple GitHub accounts:
+```bash
+# Add the second repository as a secondary remote
+git remote add alt https://github.com/thriniiiiiiiiiiii/Vision-Forge.git
+
+# Push to the secondary repository
+git push alt main
 ```
